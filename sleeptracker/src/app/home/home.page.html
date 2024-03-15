@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Sleep & Health Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <!--
+  <app-sleep-data-visualization [sleepData]="sleepService.getAllSleepData()"></app-sleep-data-visualization>
+  -->  
+  <ion-content [fullscreen]="true">
+    <!-- Moon background image -->
+    <div class="background-image">
+      <img src="assets/moon-background2.jpg" alt="Moon Background">
+    </div>
+  <!-- Clock Display -->
+  <div class="clock-container" >
+    <ion-item id="clock01">
+      <!-- Clock Display -->
+      <div class="clock-container" id = "clock001">
+      <h1>{{ currentTime }}</h1>
+  </div>
+      
+    </ion-item>
+  </div>
+
+  
+    <!-- Button Container -->
+    <div class="button-container">
+      <ion-button expand="block" routerLink = "/tabs/log-sleep-time" >
+        <ion-icon slot="start" name="alarm-outline"></ion-icon>
+        Log Sleep Time
+      </ion-button>
+      
+      <ion-button expand="block" (click)="logSleepiness()">
+        <ion-icon slot="start" name="moon-outline"></ion-icon>
+        Log Sleepiness
+      </ion-button>
+      <ion-button expand="block" (click)="showLoggedOvernightSleep()">
+        <ion-icon slot="start" name="server-outline"></ion-icon>
+        Show Logged Overnight Sleep
+      </ion-button>
+      <ion-button expand="block" (click)="showLoggedSleepinessLevels()">
+        <ion-icon slot="start" name="save-outline"></ion-icon>
+        Show Logged Sleepiness Levels
+      </ion-button>
+    </div>
+  </ion-content>
+  
+<!-- 
+  <ion-footer>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="view">
+          <ion-icon name="stats-chart-outline"></ion-icon>
+          <ion-label>View</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="settings">
+          <ion-icon name="settings-outline"></ion-icon>
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer> -->
+  

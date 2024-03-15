@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+      <ion-title>Show Logged Overnight Sleep</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header>Logged Overnight Sleep</ion-list-header>
+    <ion-item *ngFor="let data of overnightSleepData">
+      <ion-label>
+        <h2>{{ data.dateString() }}</h2>
+        <p>{{ data.summaryString() }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

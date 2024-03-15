@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log Sleep Time</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Time Went to Bed Section -->
+  <div *ngIf="!showWakeTime">
+    <h2 style="text-align: center;">Time Went to Bed</h2>
+    <ion-item>
+      <ion-label position="stacked" style="font-size:xx-large;">Select Time</ion-label>
+      <br/><hr/>
+      <ion-datetime-button datetime="sleepTimePicker"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="sleepTimePicker" presentation="date-time" prefer-wheel="true" displayFormat="YYYY-MMM-dd HH:mm" [(ngModel)]="sleepTimeString"></ion-datetime>
+          <!-- Optional: Buttons for OK and Cancel -->
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-button expand="block" (click)="next()">Next</ion-button>
+    <hr/><br/><br/>
+  </div>
+  
+  <!-- Time Woke Up Section -->
+  <div *ngIf="showWakeTime">
+    <h2 style="text-align: center;">Time Woke Up</h2>
+    <ion-item>
+      <ion-label style="font-size:xx-large;" position="stacked">Select Time</ion-label>
+      <br/><hr/>
+      <ion-datetime-button datetime="wakeTimePicker"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="wakeTimePicker" presentation="date-time" prefer-wheel="true" displayFormat="YYYY-MMM-dd HH:mm" [(ngModel)]="wakeTimeString"></ion-datetime>
+          <!-- Optional: Buttons for OK and Cancel -->
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-button expand="block" (click)="logSleep()">Log Sleep</ion-button>
+  </div>
+</ion-content>

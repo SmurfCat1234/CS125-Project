@@ -1,0 +1,15 @@
+ion-item {
+    --inner-padding-start: 10px; // Adjust padding as needed
+    --inner-padding-end: 10px;
+  }
+  
+  ion-label {
+    --ion-text-wrap: wrap; // Ensures text wrapping
+  }
+  
+  // Responsive styles if needed
+  @media (max-width: 600px) {
+    ion-label {
+      font-size: smaller; // Adjust font size for smaller screens
+    }
+  }

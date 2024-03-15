@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recommendations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let recommendation of recommendations">
+      <ion-card-header>
+        <ion-card-title>{{ recommendation.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ recommendation.content }}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

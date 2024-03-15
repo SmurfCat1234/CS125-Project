@@ -1,0 +1,9 @@
+<ion-item>
+  <ion-label position="floating">Sleep Start</ion-label>
+  <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sleepStart"></ion-datetime>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Sleep End</ion-label>
+  <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="sleepEnd"></ion-datetime>
+</ion-item>
+<ion-button expand="full" (click)="logSleepData()">Log Sleep Data</ion-button>

@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>View Insights</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Sleep Chart -->
+  <div class="chart-container">
+    <canvas id="sleepChart"></canvas>
+  </div>
+
+  <!-- Sleepiness Chart -->
+  <div class="chart-container">
+    <canvas id="sleepinessChart"></canvas>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sleep Insights</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      eg.Try to maintain at least 7 hours of sleep.
+      <!-- Dynamically insert insights here, e.g., "Try to maintain at least 7 hours of sleep." -->
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>

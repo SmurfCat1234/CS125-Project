@@ -1,0 +1,29 @@
+ion-label {
+    --ion-text-wrap: wrap; // Ensures text wrapping
+  }
+  
+  ion-item {
+    --inner-padding-start: 10px; // Adjust padding as needed
+    --inner-padding-end: 10px;
+  }
+  
+
+
+  ion-radio-group {
+    ion-item {
+      font-size: 3vw; // Adjusts font size based on the width of the viewport
+  
+      ion-label {
+        --ion-text-wrap: wrap; // Ensures text wrapping
+      }
+    }
+  }
+  
+  // For smaller screens, adjust font size to a fixed smaller size
+  @media (max-width: 600px) {
+    ion-radio-group {
+      ion-item {
+        font-size: 12px; // A smaller fixed font size for small screens
+      }
+    }
+  }

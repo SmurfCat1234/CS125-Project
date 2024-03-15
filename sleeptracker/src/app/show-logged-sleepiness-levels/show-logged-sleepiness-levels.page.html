@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Show Logged Sleepiness Levels</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Show Logged Sleepiness Levels</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  
+  <ion-list>
+    <!-- Use a loop to display each logged sleepiness entry -->
+    <ion-item *ngFor="let entry of sleepinessData">
+      <ion-label class="ion-text-wrap">
+        <h2>Date: {{ entry.loggedAt| date: 'mediumDate' }}</h2>
+        <p>Time: {{ entry.loggedAt| date: 'mediumTime' }}</p>
+        <p>Level: {{ entry.summaryString() }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
