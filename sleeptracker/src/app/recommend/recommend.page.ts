@@ -1,10 +1,10 @@
+// src/app/recommend/recommend.page.ts
 import { Component, OnInit } from '@angular/core';
 import { RecommendationService } from '../services/recommendation.service';
 
 interface Recommendation {
   title: string;
   content: string;
-  // Include other fields as needed
 }
 
 @Component({
@@ -13,13 +13,11 @@ interface Recommendation {
   styleUrls: ['recommend.page.scss'],
 })
 export class RecommendationsPage implements OnInit {
-  recommendations: Recommendation[] = []; // Use the Recommendation interface
+  recommendations: Recommendation[] = [];
 
   constructor(private recommendationService: RecommendationService) {}
 
-  ngOnInit() {
-    this.recommendationService.getRecommendations().subscribe(recommendations => {
-      this.recommendations = recommendations;
-    });
+  async ngOnInit() {
+    this.recommendations = await this.recommendationService.getRecommendations();
   }
 }

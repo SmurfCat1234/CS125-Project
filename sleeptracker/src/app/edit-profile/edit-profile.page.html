@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <form #editForm="ngForm" (ngSubmit)="saveProfile()">
+      <ion-list>
+        <!-- Full Name -->
+        <ion-item>
+          <ion-label position="floating">Full Name</ion-label>
+          <ion-input [(ngModel)]="userProfile.name" name="name" required></ion-input>
+        </ion-item>
+
+        <!-- Username -->
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input [(ngModel)]="userProfile.username" name="username" required></ion-input>
+        </ion-item>
+
+        <!-- Email -->
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="userProfile.email" name="email" type="email" required></ion-input>
+        </ion-item>
+
+        <!-- Birthday -->
+        <!-- <ion-item>
+          <ion-label position="floating">Birthday</ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="userProfile.birthdate" name="birthdate"></ion-datetime>
+        </ion-item> -->
+
+        <ion-item (mousedown)="$event.preventDefault()" (click)="togglePicker('birthday')">
+          <ion-label position="floating">Birthday</ion-label>
+          <ion-input [value]="userProfile.birthdate | date: 'MMM dd, yyyy'" readonly></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showBirthdayPicker" [(ngModel)]="userProfile.birthdate" name="birthdate" presentation="date" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD YYYY" (ionChange)="togglePicker('birthday', false)"></ion-datetime>
+
+
+        <!-- Gender -->
+        <ion-item>
+          <ion-label position="floating">Gender</ion-label>
+          <ion-select [(ngModel)]="userProfile.gender" name="gender">
+            <ion-select-option value="female">Female</ion-select-option>
+            <ion-select-option value="male">Male</ion-select-option>
+            <ion-select-option value="other">Other</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Short Bio -->
+        <ion-item>
+          <ion-label position="floating">Short Bio</ion-label>
+          <ion-textarea [(ngModel)]="userProfile.bio" name="bio"></ion-textarea>
+        </ion-item>
+
+        <!-- Preferred Sleep Time -->
+        <!-- <ion-item>
+          <ion-label position="floating">Preferred Sleep Time</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="userProfile.preferredSleepTime" name="preferredSleepTime"></ion-datetime>
+        </ion-item> -->
+
+        <!-- Preferred Wake Up Time -->
+        <!-- <ion-item>
+          <ion-label position="floating">Preferred Wake Up Time</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="userProfile.preferredWakeUpTime" name="preferredWakeUpTime"></ion-datetime>
+        </ion-item> -->
+      
+        <!-- Preferred Sleep Time -->
+        <ion-item (mousedown)="$event.preventDefault()" (click)="togglePicker('preferredSleepTime')">
+          <ion-label position="floating">Preferred Sleep Time</ion-label>
+          <ion-input [value]="userProfile.preferredSleepTime | date: 'HH:mm'" readonly></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showSleepTimePicker" [(ngModel)]="userProfile.preferredSleepTime" name="preferredSleepTime" presentation="time" displayFormat="HH:mm" (ionChange)="togglePicker('preferredSleepTime', false)"></ion-datetime>
+
+        <!-- Preferred Wake Up Time -->
+        <ion-item (mousedown)="$event.preventDefault()" (click)="togglePicker('preferredWakeUpTime')">
+          <ion-label position="floating">Preferred Wake Up Time</ion-label>
+          <ion-input [value]="userProfile.preferredWakeUpTime | date: 'HH:mm'" readonly></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showWakeTimePicker" [(ngModel)]="userProfile.preferredWakeUpTime" name="preferredWakeUpTime" presentation="time" displayFormat="HH:mm" (ionChange)="togglePicker('preferredWakeUpTime', false)"></ion-datetime>
+      
+      
+      </ion-list> 
+
+      <!-- Save Button -->
+      <ion-button type="submit" expand="block" [disabled]="!editForm.valid">Save</ion-button>
+
+
+    </form>
+  </div>
+</ion-content>

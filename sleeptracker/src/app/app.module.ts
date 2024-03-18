@@ -15,6 +15,9 @@ import { TabsPageModule } from './tabs/tabs.module'; // Import TabsPageModule
 import { SleepDataLogger } from './sleep-data-logger/sleep-data-logger.component';
 import { SleepDataVisualization } from './sleep-data-visualization/sleep-data-visualization.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +29,7 @@ import { SleepDataVisualization } from './sleep-data-visualization/sleep-data-vi
     
   ],
   
-  imports: [BrowserModule, IonicModule.forRoot({navAnimation: customTransition}), AppRoutingModule,FormsModule,IonicStorageModule.forRoot(),TabsPageModule],
+  imports: [BrowserModule,HttpClientModule,BrowserAnimationsModule, IonicModule.forRoot({navAnimation: customTransition}), AppRoutingModule,FormsModule,IonicStorageModule.forRoot(),TabsPageModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

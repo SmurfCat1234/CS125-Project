@@ -1,0 +1,35 @@
+.welcome-container, .form-container {
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+  
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    p {
+      margin-bottom: 30px;
+    }
+  
+    ion-button {
+      --padding-start: 20px;
+      --padding-end: 20px;
+      margin-bottom: 20px;
+    }
+    ion-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: 100vh; /* 100% of the viewport height */
+        
+      }
+
+  }
+  
+.welcome-container{
+    display: flex;
+}

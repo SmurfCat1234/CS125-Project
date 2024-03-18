@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root'
 })
 export class SleepService {
-	private static LoadDefaultData:boolean = true;
+	private static LoadDefaultData:boolean = false;
 	//public static AllSleepData:SleepData[] = [];
 	public static AllOvernightData:OvernightSleepData[] = [];
 	public static AllSleepinessData:StanfordSleepinessData[] = [];
@@ -32,17 +32,7 @@ export class SleepService {
 	  }  
 
 
-	//   private async loadAllData() {
-	// 	const overnightData = await this.storage.get('allOvernightData');
-	// 	if (overnightData) {
-	// 	  SleepService.AllOvernightData = overnightData.map(this.toOvernightSleepData);
-	// 	}
-	  
-	// 	const sleepinessData = await this.storage.get('allSleepinessData');
-	// 	if (sleepinessData) {
-	// 	  SleepService.AllSleepinessData = sleepinessData.map(this.toStanfordSleepinessData);
-	// 	}
-	//   }
+	
 
 	private async loadAllData(): Promise<boolean> {
 		const overnightData = await this.storage.get('allOvernightData');
@@ -63,7 +53,52 @@ export class SleepService {
 		this.logOvernightData(new OvernightSleepData(new Date('February 20, 2021 23:11:00'), new Date('February 21, 2021 08:03:00')));
 	}
 
+	async addPersonalData() {
+		const sleepDates = [
+		  // Existing data
+		  { start: 'February 18, 2024 01:03:00', end: 'February 18, 2024 09:25:00' },
+		  { start: 'February 20, 2024 23:11:00', end: 'February 21, 2024 08:03:00' },
+		  //  more new data entries
+		  { start: 'February 22, 2024 22:00:00', end: 'February 23, 2024 06:30:00' },
+		  { start: 'February 24, 2024 22:15:00', end: 'February 25, 2024 07:00:00' },
+		  { start: 'February 26, 2024 22:15:00', end: 'February 27, 2024 06:45:00' },
+		  { start: 'February 28, 2024 22:00:00', end: 'February 29, 2024 07:15:00' },
+		  { start: 'March 02, 2024 22:30:00', end: 'March 03, 2024 06:50:00' },
+		  { start: 'March 04, 2024 21:45:00', end: 'March 05, 2024 07:00:00' },
+		  { start: 'March 06, 2024 22:30:00', end: 'March 07, 2024 06:30:00' },
+		  { start: 'March 08, 2024 23:00:00', end: 'March 09, 2024 07:00:00' },
+		  { start: 'March 10, 2024 22:00:00', end: 'March 11, 2024 06:20:00' },
+		  // Add more entries as needed...
+		];
+	
+		sleepDates.forEach(({ start, end }) => {
+		  this.logOvernightData(new OvernightSleepData(new Date(start), new Date(end)));
+		});
+	
+		const sleepinessDates = [
+			{ value: 4, date: 'February 19, 2024 14:38:00' },
+			{ value: 5, date: 'February 20, 2024 21:38:00' },
+			// 7 more new data entries
+			{ value: 3, date: 'February 22, 2024 15:00:00' },
+			{ value: 6, date: 'February 24, 2024 20:00:00' },
+			// Add more entries as needed...
+			{ value: 2, date: 'February 26, 2024 14:30:00' },
+			{ value: 4, date: 'February 28, 2024 16:45:00' },
+			{ value: 5, date: 'March 02, 2024 15:20:00' },
+			{ value: 3, date: 'March 04, 2024 14:00:00' },
+			{ value: 2, date: 'March 06, 2024 18:30:00' },
+			{ value: 5, date: 'March 08, 2024 17:15:00' },
+			{ value: 6, date: 'March 10, 2024 19:00:00' },
 
+		  
+		];
+	
+		sleepinessDates.forEach(({ value, date }) => {
+		  this.logSleepinessData(new StanfordSleepinessData(value, new Date(date)));
+		});
+	  }
+	
+	
 
 	public async logOvernightData(sleepData: OvernightSleepData) {
 		SleepService.AllOvernightData.push(sleepData);
@@ -148,58 +183,11 @@ export class SleepService {
 		await this.storage.clear();
 	  }
 
-	// public getLatestOvernightSleepData(): OvernightSleepData {
-	// 	return SleepService.AllOvernightData[SleepService.AllOvernightData.length - 1];
-	//   }
-	
-	//   // Method to get the latest sleepiness data
-	// public getLatestSleepinessData(): StanfordSleepinessData {
-	// 	return SleepService.AllSleepinessData[SleepService.AllSleepinessData.length - 1];
-	//   }
-
-	//   public editSleepData(index: number, newData: SleepData) {
-	// 	if(index >= 0 && index < SleepService.AllSleepData.length) {
-	// 	  const oldData = SleepService.AllSleepData[index];
-	
-	// 	  // Update the main AllSleepData array
-	// 	  SleepService.AllSleepData[index] = newData;
-	
-	// 	  // Update specific data arrays if necessary
-	// 	  if(oldData instanceof OvernightSleepData && newData instanceof OvernightSleepData) {
-	// 		const specificIndex = SleepService.AllOvernightData.findIndex(d => d.id === oldData.id);
-	// 		if(specificIndex !== -1) {
-	// 		  SleepService.AllOvernightData[specificIndex] = newData;
-	// 		}
-	// 	  } else if(oldData instanceof StanfordSleepinessData && newData instanceof StanfordSleepinessData) {
-	// 		const specificIndex = SleepService.AllSleepinessData.findIndex(d => d.id === oldData.id);
-	// 		if(specificIndex !== -1) {
-	// 		  SleepService.AllSleepinessData[specificIndex] = newData;
-	// 		}
-	// 	  }
-	// 	}
-	//   }
-	
-	//   public deleteSleepData(index: number) {
-	// 	if(index >= 0 && index < SleepService.AllSleepData.length) {
-	// 	  const dataToDelete = SleepService.AllSleepData[index];
-	
-	// 	  // Remove from the main AllSleepData array
-	// 	  SleepService.AllSleepData.splice(index, 1);
-	
-	// 	  // Remove from specific data arrays if necessary
-	// 	  if(dataToDelete instanceof OvernightSleepData) {
-	// 		const specificIndex = SleepService.AllOvernightData.findIndex(d => d.id === dataToDelete.id);
-	// 		if(specificIndex !== -1) {
-	// 		  SleepService.AllOvernightData.splice(specificIndex, 1);
-	// 		}
-	// 	  } else if(dataToDelete instanceof StanfordSleepinessData) {
-	// 		const specificIndex = SleepService.AllSleepinessData.findIndex(d => d.id === dataToDelete.id);
-	// 		if(specificIndex !== -1) {
-	// 		  SleepService.AllSleepinessData.splice(specificIndex, 1);
-	// 		}
-	// 	  }
-	// 	}
-	//   }
-
+	  async clearAllSleepData() {
+		SleepService.AllOvernightData = [];
+		SleepService.AllSleepinessData = [];
+		await this.storage.remove('allOvernightData');
+		await this.storage.remove('allSleepinessData');
+	  }
 
 }

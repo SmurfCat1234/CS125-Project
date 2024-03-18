@@ -51,6 +51,14 @@ const routes: Routes = [
     path: 'recommendations',
     loadChildren: () => import('./recommend/recommend.module').then( m => m.RecommendationsPageModule)
   },
+  {
+    path: 'intro',
+    loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
 ];
 
 @NgModule({
