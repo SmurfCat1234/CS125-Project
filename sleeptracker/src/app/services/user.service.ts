@@ -10,6 +10,9 @@ export interface UserProfile {
   gender?: string; // Optional fields
   preferredSleepTime?: string;
   preferredWakeUpTime?: string;
+  stressors: string[];
+  dailyActivities: string[];
+  dietaryHabits: string[];
 }
 
 @Injectable({
@@ -45,7 +48,7 @@ export class UserService {
     }
     return null;
   }
-  
+
   async isFirstTimeUser(): Promise<boolean> {
     await this.ensureInitialized(); // Ensure storage is initialized
     const userProfile = await this.getUserProfile();
@@ -56,5 +59,5 @@ export class UserService {
     await this.ensureInitialized();
     await this._storage?.remove('userProfile');
   }
-  
+
 }

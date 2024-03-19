@@ -36,23 +36,30 @@ export class IntroPage {
     name: '',
     email: '',
     username: '',
-    birthdate: new Date(), // Keep as Date object
+    birthdate: new Date(),
     bio: '',
     gender: '',
     preferredSleepTime: '',
     preferredWakeUpTime: '',
-    
+    stressors: [],
+    dailyActivities: [],
+    dietaryHabits: [],
+
   };
-  showWelcome = true; // Initially show the welcome view
+  showWelcome = true;
   showBirthdayPicker = false;
   showSleepTimePicker = false;
   showWakeTimePicker = false;
+  selectedStressors: string[] = [];
+  selectedActivities: string[] = [];
+  selectedDietaryHabits: string[] = [];
+
 
   getStarted() {
-    this.showWelcome = false; // Hide the welcome view and show the form
+    this.showWelcome = false;
   }
 
-  // Additional property for ion-datetime binding
+
   birthdateISO: string = new Date().toISOString();
 
   constructor(private userService: UserService, private navCtrl: NavController) {}
@@ -70,7 +77,9 @@ export class IntroPage {
   async submitForm() {
     // Convert ISO string to Date object for userProfile
     this.userProfile.birthdate = new Date(this.birthdateISO);
-
+    this.userProfile.stressors = this.selectedStressors;
+    this.userProfile.dailyActivities = this.selectedActivities;
+    this.userProfile.dietaryHabits = this.selectedDietaryHabits;
     await this.userService.setUserProfile(this.userProfile);
     this.navCtrl.navigateRoot('/tabs/home');
   }

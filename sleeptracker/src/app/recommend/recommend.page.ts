@@ -1,4 +1,4 @@
-// src/app/recommend/recommend.page.ts
+
 import { Component, OnInit } from '@angular/core';
 import { RecommendationService } from '../services/recommendation.service';
 
@@ -18,6 +18,12 @@ export class RecommendationsPage implements OnInit {
   constructor(private recommendationService: RecommendationService) {}
 
   async ngOnInit() {
+    this.recommendations = await this.recommendationService.getRecommendations();
+
+
+  }
+
+  async fetchRecommendations() {
     this.recommendations = await this.recommendationService.getRecommendations();
   }
 }

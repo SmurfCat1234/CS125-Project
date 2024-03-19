@@ -26,15 +26,9 @@
           <ion-input [(ngModel)]="userProfile.email" name="email" type="email" required></ion-input>
         </ion-item>
 
-        <!-- Birthday -->
-        <!-- <ion-item>
-          <ion-label position="floating">Birthday</ion-label>
-          <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="userProfile.birthdate" name="birthdate"></ion-datetime>
-        </ion-item> -->
-
         <ion-item (mousedown)="$event.preventDefault()" (click)="togglePicker('birthday')">
           <ion-label position="floating">Birthday</ion-label>
-          <ion-input [value]="userProfile.birthdate | date: 'MMM dd, yyyy'" readonly></ion-input>
+          <ion-input [value]="birthdateISO | date: 'MMM dd, yyyy'" readonly></ion-input>
         </ion-item>
         <ion-datetime *ngIf="showBirthdayPicker" [(ngModel)]="userProfile.birthdate" name="birthdate" presentation="date" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD YYYY" (ionChange)="togglePicker('birthday', false)"></ion-datetime>
 
@@ -56,18 +50,6 @@
         </ion-item>
 
         <!-- Preferred Sleep Time -->
-        <!-- <ion-item>
-          <ion-label position="floating">Preferred Sleep Time</ion-label>
-          <ion-datetime displayFormat="HH:mm" [(ngModel)]="userProfile.preferredSleepTime" name="preferredSleepTime"></ion-datetime>
-        </ion-item> -->
-
-        <!-- Preferred Wake Up Time -->
-        <!-- <ion-item>
-          <ion-label position="floating">Preferred Wake Up Time</ion-label>
-          <ion-datetime displayFormat="HH:mm" [(ngModel)]="userProfile.preferredWakeUpTime" name="preferredWakeUpTime"></ion-datetime>
-        </ion-item> -->
-      
-        <!-- Preferred Sleep Time -->
         <ion-item (mousedown)="$event.preventDefault()" (click)="togglePicker('preferredSleepTime')">
           <ion-label position="floating">Preferred Sleep Time</ion-label>
           <ion-input [value]="userProfile.preferredSleepTime | date: 'HH:mm'" readonly></ion-input>
@@ -80,9 +62,68 @@
           <ion-input [value]="userProfile.preferredWakeUpTime | date: 'HH:mm'" readonly></ion-input>
         </ion-item>
         <ion-datetime *ngIf="showWakeTimePicker" [(ngModel)]="userProfile.preferredWakeUpTime" name="preferredWakeUpTime" presentation="time" displayFormat="HH:mm" (ionChange)="togglePicker('preferredWakeUpTime', false)"></ion-datetime>
-      
-      
-      </ion-list> 
+
+
+
+
+        <ion-item>
+          <ion-label>Stressors</ion-label>
+          <ion-select multiple="true" [(ngModel)]="userProfile.stressors" name="stressors">
+            <ion-select-option value="work">Work</ion-select-option>
+            <ion-select-option value="family">Family</ion-select-option>
+            <ion-select-option value="finances">Finances</ion-select-option>
+            <ion-select-option value="health">Health</ion-select-option>
+            <ion-select-option value="relationships">Relationships</ion-select-option>
+            <ion-select-option value="timeManagement">Time Management</ion-select-option>
+            <ion-select-option value="personalSafety">Personal Safety</ion-select-option>
+            <ion-select-option value="academicPressure">Academic Pressure</ion-select-option>
+            <ion-select-option value="housing">Housing</ion-select-option>
+            <ion-select-option value="socialInteractions">Social Interactions</ion-select-option>
+            <ion-select-option value="career">Career</ion-select-option>
+            <ion-select-option value="lifeChanges">Life Changes</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Daily Activities</ion-label>
+          <ion-select multiple="true" [(ngModel)]="userProfile.dailyActivities" name="dailyActivities">
+            <ion-select-option value="sedentary">Sedentary (little to no exercise)</ion-select-option>
+            <ion-select-option value="lightExercise">Light Exercise (1-3 days per week)</ion-select-option>
+            <ion-select-option value="moderateExercise">Moderate Exercise (3-5 days per week)</ion-select-option>
+            <ion-select-option value="heavyExercise">Heavy Exercise (6-7 days per week)</ion-select-option>
+            <ion-select-option value="physicalWork">Physical Work</ion-select-option>
+            <ion-select-option value="commuting">Commuting</ion-select-option>
+            <ion-select-option value="householdChores">Household Chores</ion-select-option>
+            <ion-select-option value="recreationalSports">Recreational Sports</ion-select-option>
+            <ion-select-option value="deskJob">Desk Job</ion-select-option>
+            <ion-select-option value="standingWork">Standing Work</ion-select-option>
+            <ion-select-option value="manualLabor">Manual Labor</ion-select-option>
+            <ion-select-option value="outdoorActivities">Outdoor Activities</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Dietary Habits</ion-label>
+          <ion-select multiple="true" [(ngModel)]="userProfile.dietaryHabits" name="dietaryHabits">
+            <ion-select-option value="balanced">Balanced Diet</ion-select-option>
+            <ion-select-option value="highProtein">High Protein</ion-select-option>
+            <ion-select-option value="lowCarb">Low Carb</ion-select-option>
+            <ion-select-option value="vegetarian">Vegetarian</ion-select-option>
+            <ion-select-option value="vegan">Vegan</ion-select-option>
+            <ion-select-option value="pescatarian">Pescatarian</ion-select-option>
+            <ion-select-option value="intermittentFasting">Intermittent Fasting</ion-select-option>
+            <ion-select-option value="mediterranean">Mediterranean</ion-select-option>
+            <ion-select-option value="glutenFree">Gluten-Free</ion-select-option>
+            <ion-select-option value="dairyFree">Dairy-Free</ion-select-option>
+            <ion-select-option value="highFiber">High Fiber</ion-select-option>
+            <ion-select-option value="sugarFree">Sugar-Free</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+
+
+
+      </ion-list>
 
       <!-- Save Button -->
       <ion-button type="submit" expand="block" [disabled]="!editForm.valid">Save</ion-button>

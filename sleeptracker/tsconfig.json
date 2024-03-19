@@ -3,6 +3,12 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@/sklearn/types/*": ["node_modules/sklearn/build/types/*"],
+      "@/sklearn/types": ["node_modules/sklearn/build/types"]
+
+    },
+
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -19,7 +25,7 @@
     "target": "es2015",
     "module": "es2020",
     "lib": [
-      "es2018", 
+      "es2018",
       "dom"
     ],
     "useDefineForClassFields": false

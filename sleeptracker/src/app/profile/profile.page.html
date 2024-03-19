@@ -24,19 +24,55 @@
           <ion-icon name="calendar-outline" slot="start"></ion-icon>
           <ion-label>{{ userProfile?.birthdate | date }}</ion-label>
         </ion-item>
+
+        <ion-item>
+          <ion-icon name="time-outline" slot="start"></ion-icon>
+          <ion-label>Age: {{ calculateAge(userProfile?.birthdate) }}</ion-label>
+        </ion-item>
+        <!-- Gender -->
+        <ion-item *ngIf="userProfile?.gender">
+          <ion-icon name="transgender-outline" slot="start"></ion-icon>
+          <ion-label>Gender: {{ userProfile?.gender }}</ion-label>
+        </ion-item>
+
         <ion-item>
           <ion-icon name="document-text-outline" slot="start"></ion-icon>
           <ion-label class="ion-text-wrap">{{ userProfile?.bio }}</ion-label>
         </ion-item>
-        <!-- Add more profile details here -->
+
+        <!-- Preferred Sleep Time -->
+        <!-- <ion-item *ngIf="userProfile?.preferredSleepTime && userProfile?.preferredWakeUpTime">
+          <ion-icon name="bed-outline" slot="start"></ion-icon>
+          <ion-label>Preferred Sleep Time: {{ calculatePreferredSleepHours() | number: '1.2-2' }} hours</ion-label>
+        </ion-item> -->
+
+        <!-- Stressors -->
+        <ion-item *ngIf="userProfile.stressors.length > 0">
+          <ion-icon name="alert-circle-outline" slot="start"></ion-icon>
+          <ion-label>Stressors: {{ userProfile.stressors.join(', ')  }}</ion-label>
+        </ion-item>
+
+        <!-- Daily Activities -->
+        <ion-item *ngIf="userProfile.dailyActivities.length > 0">
+          <ion-icon name="walk-outline" slot="start"></ion-icon>
+          <ion-label>Daily Activities: {{ userProfile.dailyActivities.join(', ')  }}</ion-label>
+        </ion-item>
+
+        <!-- Dietary Habits -->
+        <ion-item *ngIf="userProfile.dietaryHabits.length > 0">
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+          <ion-label>Dietary Habits: {{ userProfile.dietaryHabits.join(', ')  }}</ion-label>
+        </ion-item>
+
+
       </ion-list>
       <ion-button expand="block" (click)="editProfile()">Edit Profile</ion-button>
       <!-- <ion-button expand="block" color="medium" (click)="logout()">Log Out</ion-button> -->
-      
-      <!-- New Delete Profile button -->
+
+
       <ion-button expand="block" color="danger" (click)="deleteProfile()">Delete Profile</ion-button>
 
-      <!-- New Clear Sleep Data button -->
+
       <ion-button expand="block" color="secondary" (click)="clearSleepData()">Clear Sleep Data</ion-button>
 
       <ion-button expand="block" (click)="importSleepData()">Import Sleep Data</ion-button>

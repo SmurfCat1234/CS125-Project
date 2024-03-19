@@ -1,5 +1,10 @@
 "# CS125-Project" 
 
+Demo video link:
+
+https://drive.google.com/file/d/121OMvieD97JRgfkXxZBvEtUgoPlrzzTh/view?usp=sharing
+
+
 to run it: 
 download the zip,
 
@@ -14,6 +19,9 @@ npm install
 
 npm install -g @ionic/cli
 npm install sklearn
+npm install --save-dev @types/node
+npm install @types/node
+npm install express body-parser @google/generative-ai dotenv @types/node @types/express @types/body-parser
 
 Make sure you have Node.js and Python 3 installed and in your PATH.
 

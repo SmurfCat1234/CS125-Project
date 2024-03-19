@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { SleepService } from '../services/sleep.service';
+import { Router, NavigationEnd } from '@angular/router';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-view',
@@ -9,9 +11,14 @@ import { SleepService } from '../services/sleep.service';
 })
 export class ViewPage implements OnInit, AfterViewInit {
 
-  constructor(public sleepService: SleepService) { }
+  constructor(public sleepService: SleepService, private router: Router,private eventService: EventService) {}
 
   ngOnInit() {
+
+    this.eventService.dataImported.subscribe(() => {
+      this.initSleepChart();
+      this.initSleepinessChart();
+    });
   }
 
   ngAfterViewInit() {
@@ -43,7 +50,7 @@ export class ViewPage implements OnInit, AfterViewInit {
           }
         }
       }
-    
+
     );
     }
     else {

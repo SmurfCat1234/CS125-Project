@@ -18,6 +18,8 @@ import { SleepDataVisualization } from './sleep-data-visualization/sleep-data-vi
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
+import { PythonBridge, NDArray, ArrayLike, SparseMatrix } from 'sklearn/build/index'; // Adjusted path
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     
   ],
   
-  imports: [BrowserModule,HttpClientModule,BrowserAnimationsModule, IonicModule.forRoot({navAnimation: customTransition}), AppRoutingModule,FormsModule,IonicStorageModule.forRoot(),TabsPageModule],
+  imports: [BrowserModule,HttpClientModule,BrowserAnimationsModule, IonicModule.forRoot({navAnimation: customTransition}), AppRoutingModule,FormsModule,IonicStorageModule.forRoot(),TabsPageModule,
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

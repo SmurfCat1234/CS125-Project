@@ -18,14 +18,14 @@
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
           <ion-datetime id="sleepTimePicker" presentation="date-time" prefer-wheel="true" displayFormat="YYYY-MMM-dd HH:mm" [(ngModel)]="sleepTimeString"></ion-datetime>
-          <!-- Optional: Buttons for OK and Cancel -->
+
         </ng-template>
       </ion-modal>
     </ion-item>
     <ion-button expand="block" (click)="next()">Next</ion-button>
     <hr/><br/><br/>
   </div>
-  
+
   <!-- Time Woke Up Section -->
   <div *ngIf="showWakeTime">
     <h2 style="text-align: center;">Time Woke Up</h2>
@@ -36,7 +36,7 @@
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
           <ion-datetime id="wakeTimePicker" presentation="date-time" prefer-wheel="true" displayFormat="YYYY-MMM-dd HH:mm" [(ngModel)]="wakeTimeString"></ion-datetime>
-          <!-- Optional: Buttons for OK and Cancel -->
+
         </ng-template>
       </ion-modal>
     </ion-item>

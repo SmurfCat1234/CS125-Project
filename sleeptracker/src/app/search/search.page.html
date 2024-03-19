@@ -7,12 +7,20 @@
 <ion-content>
   <ion-searchbar
     [(ngModel)]="searchQuery"
-    (ionChange)="performSearch()"
-    placeholder="Type to search...">
+    (keyup.enter)="performSearch()"
+    placeholder="Type to ask AI..."
+    animated="true">
   </ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let item of searchResults">
-      <ion-label>{{ item.title }}</ion-label>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="isLoading" class="ai-loading">
+    <ion-spinner name="bubbles"></ion-spinner> Asking AI now...
+  </div>
+
+  <div *ngFor="let item of searchResults" class="result-card">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title [innerHTML]="item.title"></ion-card-title>
+      </ion-card-header>
+      <ion-card-content [innerHTML]="item.content"></ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

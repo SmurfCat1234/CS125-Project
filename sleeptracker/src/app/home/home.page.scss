@@ -41,7 +41,7 @@ ion-content {
     }
   }
 
-  
+
   .clock-container {
     display: flex;
     justify-content: center;
@@ -53,20 +53,20 @@ ion-content {
 
   .button-container {
     position:absolute;
-    
+
     width: 100%;
-    bottom: 10%;    
+    bottom: 10%;
     padding: 0 5%;
     display:grid;
     flex-direction: column;
-    align-items: center; // Center align the buttons
-    gap: 20px; // Adjust the gap between buttons
-    
+    align-items: center;
+    gap: 20px;
+
     ion-button{
-      font-size: 2.5 vw; // Adjusts font size based on the width of the viewport
-      //max-width: max-content; // Allow full width on small screens
-       
-       //font: bold, Arial, Helvetica, sans-serif;
+      font-size: 2.5 vw;
+
+
+
       font-weight: bold;
       color: white;
       --padding-start: 10px;
@@ -75,45 +75,27 @@ ion-content {
   }
 }
 
-// .button-container {
-//   position: absolute;
-//   width: 100%;
-//   bottom: 20%; /* Adjusted to avoid overlap with the tab bar */
-//   padding: 0 5%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   gap: 20px;
-
-//   ion-button {
-//     font-size: 1em;
-//     font-weight: bold;
-//     color: white;
-//   }
-// }
-// }
-
 ion-footer {
   --background: transparent;
   background-color: transparent;
 
   ion-tab-bar {
-    background-color: #ffffff; /* Material Design typically uses light backgrounds */
+    background-color: #ffffff;
     color: #000000;
-    --ion-color-base: #ffffff; /* Adjust the base color to match Material Design */
+    --ion-color-base: #ffffff;
   }
 }
 
 // Responsive design for smaller screens
 @media (max-width: 600px) {
   .clock-container {
-    font-size: 1.5em; // Smaller font size for clock on small screens
+    font-size: 1.5em;
   }
 
   .button-container {
-    padding: 0 10px; // Reduce padding on smaller screens
+    padding: 0 10px;
     ion-button {
-      font-size: 0.8em; // Smaller font size for buttons on small screens
+      font-size: 0.8em;
     }
   }
 }
@@ -134,11 +116,11 @@ ion-footer {
 }
 ion-label {
   --background: transparent;
-  background-color: transparent; 
+  background-color: transparent;
 }
 div{
   background-color: transparent; // Set the background to transparent
-  
+
 }
 
 

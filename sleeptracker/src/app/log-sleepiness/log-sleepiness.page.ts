@@ -12,7 +12,7 @@ export class LogSleepinessPage {
   sleepinessLevel: number = 0;
   sleepinessLevels = [
     { value: 1, description: '1 - Feeling active, vital, alert, or wide awake' },
-    // ... add descriptions for levels 2 to 7
+
     { value: 2, description: '2 - Functioning at high levels, but not at peak; able to concentrate' },
     { value: 3, description: '3 - Awake, but relaxed; responsive but not fully alert' },
     { value: 4, description: '4 - Somewhat foggy, let down' },
@@ -20,10 +20,10 @@ export class LogSleepinessPage {
     { value: 6, description: '6 - Sleepy, woozy, fighting sleep; prefer to lie down' },
     { value: 7, description: '7 - No longer fighting sleep, sleep onset soon; having dream-like thoughts' },
 
-    
+
   ];
   constructor(
-    private navCtrl: NavController, 
+    private navCtrl: NavController,
     private toastController: ToastController,
     private alertController: AlertController,
     private sleepService: SleepService) {}
@@ -33,9 +33,9 @@ export class LogSleepinessPage {
       let sleepinessData = new StanfordSleepinessData(this.sleepinessLevel, new Date());
       this.sleepService.logSleepinessData(sleepinessData);
       console.log(`Logged Sleepiness Level: ${this.sleepinessLevel} at ${new Date().toLocaleTimeString()}`);
-      
-    
-      
+
+
+
     const toast =  await this.toastController.create({
       message: 'Successfully logged sleepiness!',
       duration: 2000

@@ -23,6 +23,9 @@ export class EditProfilePage implements OnInit {
     gender: '',
     preferredSleepTime: '',
     preferredWakeUpTime: '',
+    stressors: [],
+    dailyActivities: [],
+    dietaryHabits: [],
   };
   birthdateISO: string = new Date().toISOString();
 
@@ -35,7 +38,7 @@ export class EditProfilePage implements OnInit {
   async ngOnInit() {
     const profile = await this.userService.getUserProfile();
     if (profile) {
-      this.userProfile = profile;
+      this.userProfile ={ ...profile };
       // Convert the birthdate to ISO string format
       this.birthdateISO = profile.birthdate.toISOString();
     } else {
@@ -44,20 +47,18 @@ export class EditProfilePage implements OnInit {
     }
   }
 
-    
+
   async saveProfile() {
-    // Convert birthdateISO back to a Date object
-    this.userProfile.birthdate = new Date(this.birthdateISO);
-  
+
     try {
       await this.userService.setUserProfile(this.userProfile);
       this.showMessage('Profile saved successfully.');
-      this.navCtrl.navigateBack('/tabs/profile'); // Make sure the path is correct
+      this.navCtrl.navigateBack('/tabs/profile');
     } catch (error) {
       this.showMessage('Error saving profile. Please try again.');
     }
   }
-  
+
   async showMessage(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -67,7 +68,7 @@ export class EditProfilePage implements OnInit {
     toast.present();
   }
 
-  
+
   togglePicker(pickerType: string, show: boolean = true) {
     if (pickerType === 'birthday') {
       this.showBirthdayPicker = show;

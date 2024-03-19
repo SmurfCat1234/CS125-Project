@@ -1,43 +1,53 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  constructor() {}
+  private apiUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent';
+
+  private apiKey = 'AIzaSyBdWNF-w_irW0rVHQlgbkJuueFq2bwPnOE'; //
+
+  constructor(private http: HttpClient) {}
 
   async performSearch(query: string): Promise<any[]> {
-    const modifiedQuery = `${query} sleep health`;
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const targetUrl = `https://www.startpage.com/do/dsearch?query=${encodeURIComponent(modifiedQuery)}`;
-    const url = proxyUrl + targetUrl;
-  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-goog-api-key': this.apiKey,
+    });
+    const body = {
+      "contents":[
+        {"role": "user",
+          "parts":[{"text": `assume you are a health and sleep advisor, please give me some suggestions on sleep and health in regarding to ${query} and  sleep`}]
+        }
+      ]
+    };
+
     try {
-      const response = await fetch(url);
-      const html = await response.text();
-      return this.parseSearchResults(html);
+      const response: any = await this.http.post(this.apiUrl, body, { headers }).toPromise();
+      console.log(response);
+
+
+      if (response && response.candidates && response.candidates.length > 0) {
+
+        const firstCandidate = response.candidates[0];
+        if (firstCandidate.content && firstCandidate.content.parts && firstCandidate.content.parts.length > 0) {
+
+          const textResponse = firstCandidate.content.parts[0].text;
+          return this.processResponse(textResponse);
+        }
+      }
+
+      return [];
     } catch (error) {
       console.error('Search failed:', error);
       return [];
     }
   }
-  
 
-  private parseSearchResults(html: string): any[] {
-    const results: any[] = [];
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+  private processResponse(responseText: string): any[] {
 
-    // Hypothetical example: Assume search results are in <div> elements with a class of 'result'
-    const searchResults = doc.querySelectorAll('.result');
-
-    searchResults.forEach((result) => {
-      const titleElement = result.querySelector('.result-title');
-      const title = titleElement ? titleElement.textContent : 'No title';
-
-      results.push({ title });
-    });
-
-    return results;
+    return [{ title: 'Related Information', content: responseText }];
   }
 }

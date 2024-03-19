@@ -17,18 +17,18 @@ const routes: Routes = [
       },
       {
         path: 'view',
-        loadChildren: () => import('../view/view.module').then(m => m.ViewPageModule) // Make sure this is set up
+        loadChildren: () => import('../view/view.module').then(m => m.ViewPageModule)
       },
       {
         path: 'settings',
-        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule) // Make sure this is set up
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
       },
-      
+
       {
         path: 'search',
         loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
@@ -60,10 +60,10 @@ const routes: Routes = [
         path: 'show-logged-sleepiness-levels',
         loadChildren: () => import('../show-logged-sleepiness-levels/show-logged-sleepiness-levels.module').then(m => m.ShowLoggedSleepinessLevelsPageModule)
       },
-    
+
     ]
 
-    
+
   },
   {
     path: '',
